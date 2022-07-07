@@ -12,21 +12,27 @@ struct ContentView: View {
 //    @State private var UseJson=WorkWithJSONE()
     @State private var UseServer=WorkWithServer()
     @State private var firstName = "hi my friend"
-
+    @State private var LableText = WorkWithServer.req
+    @State var textToUpdate = "Update me!"
     var body: some View {
+        var net = ""
         VStack{
             TextField(/*@START_MENU_TOKEN@*/"Placeholder"/*@END_MENU_TOKEN@*/, text: $firstName)
+            
             Button("Get") {
-//                UseServer.GETRequest()
+               
+                net = UseServer.GETRequest()
+                self.LableText=net
                 print("successful get request")
-                Text(UseServer.GETRequest())
+                print(net)
             }
             Button("Post") {
                 UseServer.POSTRequest(StringToSend: firstName)
                 print("successful post request")
 
             }
-            Text("dfs")
+            Text(LableText)
+           
         }
     }
 }
